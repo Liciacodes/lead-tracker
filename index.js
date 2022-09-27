@@ -11,12 +11,13 @@ if(leadsFromLocalStorage){
     render(myLeads)
 } 
 
-const tabs = [
-    {url: "https://www.linkedin.com/per-harald-borgen/"}
-]
- tabBtn.addEventListener("click", function(){
-    console.log(tabs[0].url)
- })
+ tabBtn.addEventListener("click", function() {
+        chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
+            myLeads.push(tabs[0].url)
+            localStorage.setItem("myLeads", JSON.stringify(myLeads))
+            render(myLeads)
+        })
+})
 
 function render(leads){
     let listItems = ""
@@ -47,13 +48,6 @@ localStorage.setItem("myLeads", JSON.stringify(myLeads))
     
 })
 
-
-function getFirst(arr){
-    return arr[0]
-}
-
-let firstCard = getFirst([1, 2, 3, 4])
-console.log(firstCard)
  
 
 
@@ -71,17 +65,20 @@ console.log(firstCard)
 
 
 
+/* getting the first index of an array */
+// function getFirst(arr){
+//     return arr[0]
+// }
 
+// let firstCard = getFirst([1, 2, 3, 4])
+// console.log(firstCard)
 
-
-//using append and createElement() to display a list
+/*using append and createElement() to display a list*/
     // const li = document.createElement("li")
     // li.textContent = myLeads[i]
     // ulEl.append(li)
 
-
-
-//using innerhtml
+/*using innerhtml*/
 // const container = document.getElementById("container")
 // container.innerHTML = "<button onclick='buy()'> Buy! </button>" 
 
