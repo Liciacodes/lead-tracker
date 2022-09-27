@@ -4,11 +4,19 @@ const inputBtn = document.getElementById("input-btn")
 const ulEl = document.getElementById("ul-el")
 const deleteBtn = document.getElementById("delete-btn")
 const leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"))
+const tabBtn = document.getElementById("tab-btn")
 
 if(leadsFromLocalStorage){
     myLeads = leadsFromLocalStorage
     render(myLeads)
 } 
+
+const tabs = [
+    {url: "https://www.linkedin.com/per-harald-borgen/"}
+]
+ tabBtn.addEventListener("click", function(){
+    console.log(tabs[0].url)
+ })
 
 function render(leads){
     let listItems = ""
@@ -40,12 +48,12 @@ localStorage.setItem("myLeads", JSON.stringify(myLeads))
 })
 
 
-function add(a, b){
-return a + b;
+function getFirst(arr){
+    return arr[0]
 }
 
-console.log(add(3, 4))
-console.log(add(9, 102))
+let firstCard = getFirst([1, 2, 3, 4])
+console.log(firstCard)
  
 
 
